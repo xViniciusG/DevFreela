@@ -49,7 +49,7 @@ namespace DevFreela.Application.Services.Implementations
             var projects = _dbContext.Projects;
 
             var ProjectViewModels = projects
-                .Select(p => new ProjectViewModels(p.Title, p.CreatedAt))
+                .Select(p => new ProjectViewModels(p.Id, p.Title, p.CreatedAt))
                 .ToList();
             return ProjectViewModels;
         }
@@ -58,16 +58,20 @@ namespace DevFreela.Application.Services.Implementations
         {
             var project = _dbContext.Projects.SingleOrDefault(p => p.Id == id);
 
-            var projectDetailsViewModel = new ProjectDetailsViewModel(
-                project.Id,
-                project.Title,
-                project.Description,
-                project.TotalCost,
-                project.StartedAt,
-                project.FinishedAt
-               
-                );
+            if (project == null)
+            {
+               return null;
+            } 
 
+            var projectDetailsViewModel = new ProjectDetailsViewModel(
+                   project.Id,
+                   project.Title,
+                   project.Description,
+                   project.TotalCost,
+                   project.StartedAt,
+                   project.FinishedAt
+
+                   );
             return projectDetailsViewModel;
         }
 
@@ -79,8 +83,8 @@ namespace DevFreela.Application.Services.Implementations
 
         public void Update(UpdateProjectInputModel inputModel)
         {
-            var project = _dbContext.Projects.SingleOrDefault(p => p.Id == inputModel.I);
-            project.Update();
+            var project = _dbContext.Projects.SingleOrDefault(p => p.Id == inputModel.Id);
+            project.Update(inputModel.Title,inputModel.Description,inputModel.TotalCost);
         }
     }
 }

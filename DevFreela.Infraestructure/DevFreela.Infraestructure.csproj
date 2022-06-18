@@ -9,7 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DevFreela.API\DevFreela.API.csproj" />
     <ProjectReference Include="..\DevFreela.Core\DevFreela.Core.csproj" />
   </ItemGroup>
 
