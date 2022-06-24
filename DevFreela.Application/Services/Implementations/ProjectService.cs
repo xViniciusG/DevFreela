@@ -18,7 +18,7 @@ namespace DevFreela.Application.Services.Implementations
         public ProjectService(DevFreelaDbContext dbContext)
         {
             _dbContext = dbContext;       
-        }
+        } 
         public int Create(NewProjectInputModel inputModel)
         {
             var project = new Project(inputModel.Title, inputModel.Description, inputModel.IdClient,inputModel.IdFreelancer,inputModel.TotalCost);
