@@ -1,5 +1,4 @@
-﻿using DevFreela.Application.Services.Interfaces;
-using DevFreela.Application.ViewsModels;
+﻿using DevFreela.Application.ViewsModels;
 using DevFreela.Infraestructure.Persistence;
 using System;
 using System.Collections.Generic;

@@ -2,7 +2,6 @@
 using DevFreela.Application.Commands.CreateUser;
 using DevFreela.Application.InputModels;
 using DevFreela.Application.Queries.GetUser;
-using DevFreela.Application.Services.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -37,11 +36,8 @@ namespace DevFreela.API.Controllers
         [HttpPost]
         public async Task <IActionResult> Post([FromBody]CreateUserCommand command)
         {
-            if(command == null)
-            {
-                return BadRequest();
-            }
             var id = await _mediator.Send(command);
+
             return CreatedAtAction(nameof(GetById), new { id = id}, command);
         }
 
@@ -49,10 +45,7 @@ namespace DevFreela.API.Controllers
         [HttpPut("{id}/login")]
         public IActionResult Login(int id, [FromBody] LoginModel loginModel)
         {
-            if (loginModel == null)
-            {
-                return BadRequest();
-            }
+            // TODO: Para Módulo de Autenticação e Autorização
 
             return NoContent();
         }

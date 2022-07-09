@@ -11,7 +11,7 @@ namespace DevFreela.Application.Commands.FinishProject
     {
         public FinishProjectCommand(int id)
         {
-           id = id;
+           Id = id;
         }
 
         public int Id { get; set; }
