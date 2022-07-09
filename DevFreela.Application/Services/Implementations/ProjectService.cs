@@ -12,37 +12,13 @@ using System.Threading.Tasks;
 
 namespace DevFreela.Application.Services.Implementations
 {
-    public class ProjectService : IProjectService
+    public class ProjectService 
     {
         private readonly DevFreelaDbContext _dbContext;
         public ProjectService(DevFreelaDbContext dbContext)
         {
             _dbContext = dbContext;       
         } 
-
-        public void Delete(int id)
-        {
-            var project = _dbContext.Projects.SingleOrDefault(p => p.Id == id);
-            project.Cancel();
-            _dbContext.SaveChanges();
-        }
-
-        public void Finish(int id)
-        {
-            var project = _dbContext.Projects.SingleOrDefault(p => p.Id == id);
-            project.Finish();
-            _dbContext.SaveChanges();
-        }
-
-        public List<ProjectViewModels> GetAll(string query)
-        {
-            var projects = _dbContext.Projects;
-
-            var ProjectViewModels = projects
-                .Select(p => new ProjectViewModels(p.Id, p.Title, p.CreatedAt))
-                .ToList();
-            return ProjectViewModels;
-        }
 
         public ProjectDetailsViewModel GetById(int id)
         {
@@ -73,18 +49,6 @@ namespace DevFreela.Application.Services.Implementations
             return projectDetailsViewModel;
         }
 
-        public void Start(int id)
-        {
-            var project = _dbContext.Projects.SingleOrDefault(p => p.Id == id);
-            project.Start();
-            _dbContext.SaveChanges();
-        }
 
-        public void Update(UpdateProjectInputModel inputModel)
-        {
-            var project = _dbContext.Projects.SingleOrDefault(p => p.Id == inputModel.Id);
-            project.Update(inputModel.Title,inputModel.Description,inputModel.TotalCost);
-            _dbContext.SaveChanges();
-        }
     }
 }

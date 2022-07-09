@@ -41,7 +41,7 @@ namespace DevFreela.API
 
             services.AddScoped<IProjectService, ProjectService>();
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<ISkillService, SkillService>();
+ 
 
             services.AddScoped<ExampleClass>(e => new ExampleClass { Name = "Initial Stage" });
             //dotnet ef migrations add InitialMigration

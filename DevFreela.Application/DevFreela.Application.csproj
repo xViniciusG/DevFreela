@@ -10,13 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Queries\GetAllSkills\" />
-    <Folder Include="Queries\GetAllProjects\" />
-    <Folder Include="Queries\GetProjectById\" />
-    <Folder Include="Queries\GetUser\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
   </ItemGroup>

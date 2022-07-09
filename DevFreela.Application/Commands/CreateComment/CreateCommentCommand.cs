@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DevFreela.Application.Commands.CreateComment
 {
-    public class CreateCommentCommand : IRequest<int>
+    public class CreateCommentCommand : IRequest<Unit> // Utilizando UNIT quando o método não tiver um retorno
     {
         public string Content { get; set; }
         public int IdProject { get; set; }
