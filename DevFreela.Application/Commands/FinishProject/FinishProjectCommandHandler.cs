@@ -1,10 +1,7 @@
 ﻿using DevFreela.Core.Repositories;
-using DevFreela.Infraestructure.Persistence;
+using DevFreela.Infrastructure.Persistence;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -17,9 +14,11 @@ namespace DevFreela.Application.Commands.FinishProject
         {
             _projectRepository = projectRepository;
         }
+
         public async Task<Unit> Handle(FinishProjectCommand request, CancellationToken cancellationToken)
         {
             var project = await _projectRepository.GetByIdAsync(request.Id);
+
             project.Finish();
 
             await _projectRepository.SaveChangesAsync();

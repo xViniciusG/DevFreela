@@ -1,6 +1,6 @@
-﻿using DevFreela.Application.ViewsModels;
+﻿using DevFreela.Application.ViewModels;
 using DevFreela.Core.Repositories;
-using DevFreela.Infraestructure.Persistence;
+using DevFreela.Infrastructure.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,22 +12,23 @@ using System.Threading.Tasks;
 
 namespace DevFreela.Application.Queries.GetAllProjects
 {
-    internal class GetAllProjectsQueryHandler : IRequestHandler<GetAllProjectsQuery, List<ProjectViewModels>>
+    public class GetAllProjectsQueryHandler : IRequestHandler<GetAllProjectsQuery, List<ProjectViewModel>>
     {
         private readonly IProjectRepository _projectRepository;
         public GetAllProjectsQueryHandler(IProjectRepository projectRepository)
         {
-            _projectRepository = projectRepository; 
+            _projectRepository = projectRepository;
         }
-        public async Task<List<ProjectViewModels>> Handle(GetAllProjectsQuery request, CancellationToken cancellationToken)
+
+        public async Task<List<ProjectViewModel>> Handle(GetAllProjectsQuery request, CancellationToken cancellationToken)
         {
             var projects = await _projectRepository.GetAllAsync();
 
-            var ProjectViewModels = projects
-                .Select(p => new ProjectViewModels(p.Id, p.Title, p.CreatedAt))
+            var projectsViewModel = projects
+                .Select(p => new ProjectViewModel(p.Id, p.Title, p.CreatedAt))
                 .ToList();
-            return ProjectViewModels;
 
+            return projectsViewModel;
         }
     }
 }

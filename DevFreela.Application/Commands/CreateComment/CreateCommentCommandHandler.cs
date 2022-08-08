@@ -1,10 +1,9 @@
 ﻿using DevFreela.Core.Entities;
 using DevFreela.Core.Repositories;
-using DevFreela.Infraestructure.Persistence;
+using DevFreela.Infrastructure.Persistence;
 using MediatR;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,6 +17,7 @@ namespace DevFreela.Application.Commands.CreateComment
         {
             _projectRepository = projectRepository;
         }
+
         public async Task<Unit> Handle(CreateCommentCommand request, CancellationToken cancellationToken)
         {
             var comment = new ProjectComment(request.Content, request.IdProject, request.IdUser);
@@ -26,7 +26,5 @@ namespace DevFreela.Application.Commands.CreateComment
 
             return Unit.Value;
         }
-
-
     }
 }

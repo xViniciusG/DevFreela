@@ -1,13 +1,11 @@
 ﻿using MediatR;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DevFreela.Application.Commands.CreateComment
 {
-    public class CreateCommentCommand : IRequest<Unit> // Utilizando UNIT quando o método não tiver um retorno
+    public class CreateCommentCommand : IRequest<Unit>
     {
         public string Content { get; set; }
         public int IdProject { get; set; }
